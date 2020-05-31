@@ -1,0 +1,271 @@
+﻿<!-- dataTable CSS -->
+<link rel="stylesheet" href="estilo/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+<link href="css/estilo.css" rel="stylesheet" type="text/css" />
+
+<!-- content page title -->
+<div class="container-fluid bg-light-opac shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+        <div class="container my-3 main-container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h5>ADMINISTRACION DE CLIENTES</h5>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-small btn-rounded btn-success mdn  mb-2" data-toggle="modal" data-target="#MdNuevo">
+                        <i class="material-icons">add</i>  Nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content page title ends -->
+<!-- content page -->
+<div class="subir shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mb-4 fullscreen">
+                <div class="card-body">
+                    <table class="table table-striped table-bordered " id="dtcliente">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Cuenta</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>direccion</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbcliente"></tbody>
+                    </table>
+                    <!-- /.table-responsive -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="MdNuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color:#fafafa">
+                <h5 class="modal-title text-center" id="exampleModalLabel">AGREGAR CLIENTE:</h5>
+
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <input hidden id="opt" />
+                        <input hidden id="id" />
+                        <div class="form-group col-md-4">
+                            <label for="cuenta">Cuenta:</label>
+                            <input id="cuenta" autocomplete="off" type="text" class="form-control" placeholder="Cuenta">
+                        </div>
+                        <div class="form-group col">
+                            <label for="nombre">Nombre de la cuenta:</label>
+                            <input id="nombre" autocomplete="off" type="text" class="form-control" placeholder="nombre">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="telefono">Telefono:</label>
+                            <input id="telefono" autocomplete="off" type="text" class="form-control" placeholder="telefono">
+                        </div>
+                        <div class="form-group col">
+                            <label for="direccion">Direccion:</label>
+                            <input id="direccion" autocomplete="off" type="text" class="form-control" placeholder="direccion">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="clasi">Clasificacion:</label>
+                            <select class="custom-select my-1 mr-sm-2" id="clasi"></select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="correo">Correo:</label>
+                            <input id="correo" type="text" autocomplete="off" class="form-control" placeholder="correo">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="nit">Nit:</label>
+                            <input id="nit" autocomplete="off" type="text" class="form-control" placeholder="Nit">
+                        </div>
+                        <div class="form-group col">
+                            <label for="depto">Departamento:</label>
+                            <select class="custom-select my-1 mr-sm-2" id="depto"></select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <label>Poliza Activa:</label><br />
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+                                <label class="form-check-label" for="inlineRadio1">si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" checked name="inlineRadioOptions" id="inlineRadio2" value="0">
+                                <label class="form-check-label" for="inlineRadio2">no</label>
+                            </div>
+                        </div>
+                        <div class="form-group col" id="pf" hidden>
+                            <label for="municipio">Fecha vencimiento:</label>
+                            <input name="fecr" placeholder="dd/mm/yyyy" type="text" autocomplete="off" id="fecha" class="form-control" value="">
+                        </div>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer" style="background-color:#fafafa">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnG" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main container ends -->
+<!-- Modal 2 -->
+<div class="modal fade" id="MdDeshabilitar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color:#fafafa">
+                <h5 class="modal-title text-center" id="H1">DESHABILITAR CLIENTE:</h5>
+
+            </div>
+            <div class="modal-body">
+                <input id="ide" hidden />
+                <center>
+                    <h5>Esta seguro que desea deshabilitar este CLIENTE?</h5>
+                </center>
+            </div>
+            <div class="modal-footer" style="background-color:#fafafa">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <button type="button" id="btnc" class="btn btn-success">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal para agregar activos -->
+<div class="modal fade" id="mdAct" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <div class="row">
+                    <div class="col-12">
+                        <h5 id="tittle" class="text-center">ADMINISTRACION DE ACTIVOS:</h5>
+                        <p><strong>Cliente:</strong> <span id="nclt"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body shadow">
+                <div class="row">
+                    <div class="col-12 p-4 ">
+                        <form>
+                            <div class="form-row">
+                                <input id="idcliente" hidden />
+                                <input id="ida" type="hidden" />
+                                <input id="opt" type="hidden" />
+                                <div class="form-group col-12 col-md-6 col-lg-6">
+                                    <label for="nom" name="descripcion">Nombre:</label>
+                                    <input id="nom" type="text" class="form-control" placeholder="Nombre" autocomplete="off">
+                                </div>
+                                <div class="form-group col-12 col-md-6 col-lg-6">
+                                    <label for="tipo">Clasificacion:</label>
+                                    <select class="form-control" id="tipo"></select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <br />
+
+                                <div class="form-group col-12 col-md-4 col-lg-4"></div>
+                                <div class="form-group col-12 col-md-4 col-lg-4">
+                                    <button type="button" hidden id="btnEl" class="btn btn-danger"><i class="material-icons">delete</i> Eliminar</button>
+                                    <button type="button" class="btn btn-success" id="btnGA"><i class="material-icons">save</i>  Guardar</button>
+                                    <button type="button" class="btn btn-dark" id="btnCa"><i class="material-icons">clear</i> Cancelar</button>
+                                </div>
+
+                                <div class="form-group col-12 col-md-4 col-lg-4"></div>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                    <div class="col-12" style=" height: 40vh; overflow-y:auto">
+                        <table class="table table-bordered table-hover " id="tbdatos">
+                            <thead class="thead">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>ACTIVO</th>
+                                    <th>CLASIFICACION</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="datos"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#fafafa">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/clientes.js"></script>
+
+<!-- page specific script -->
+<script>
+    //metodo utilizado para mostrar los datos del cliente
+    function mostrar(id, depto, pol, clasi, cuenta, nombre, direccion, telefono, correo, nit, fechav) {
+        $('#cuenta').val(cuenta);
+        $('#nombre').val(nombre);
+        $('#nit').val(nit);
+        $('#direccion').val(direccion);
+        $('#clasi').val(clasi);
+        $('#depto').val(depto);
+        $('#telefono').val(telefono);
+        $('#correo').val(correo);
+        $('#nit').val(nit);
+        $('#MdNuevo').modal('toggle');
+        $('#exampleModalLabel').text("Editar Cliente");
+        $('#opt').val(1);
+        $('#id').val(id);
+        if (fechav != "") {
+            $('#fecha').val(fechav);
+        }
+        else {
+             $('#fecha').val("");
+        }
+        if (pol == 1) {
+
+            $("#inlineRadio1").prop("checked", true);
+            $('#pf').attr('hidden', false);
+        }
+        else {
+
+            $("#inlineRadio2").prop("checked", true);
+            $('#pf').attr('hidden', true);
+        }
+    }
+
+    //metodo utilizado para mostrar la modal para editar
+    function mostrarE(id) {
+        $('#ide').val(id);
+        $('#MdDeshabilitar').modal('toggle');
+    }
+    $('#fecha').datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+
+
+    //metodo utilizado para obtener la lista de soportes
+
+
+</script>
+
+<script src="js/activos.js"></script>

@@ -1,0 +1,107 @@
+﻿<!-- content page title -->
+<div class="container-fluid bg-light-opac shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+        <div class="container my-3 main-container  shadow p-3">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h5>REPORTE DE TRABAJOS</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mb-4 fullscreen">
+                <div class="card-body">
+                    <form>
+                        <input hidden id="clt" />
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="f1">Fecha Inicio:</label>
+                                <input id="f1" type="text" autocomplete="off" class="form-control" placeholder="dd/mm/yyyy">
+                            </div>
+                            <div class="form-group col">
+                                <label for="f2">Fecha Fin:</label>
+                                <input id="f2" type="text" autocomplete="off" class="form-control" placeholder="dd/mm/yyyy">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="nombre">Tecnico:</label>
+                                <input id="nombre" type="text" class="form-control" placeholder="nombre">
+                                <input id="id" value="0" hidden />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-row">
+                        <button id="btnconsultar" class="btn btn-info btn-block">Consultar</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mb-4 fullscreen">
+                <div class="card-body">
+                    <table class="table table-striped table-bordered " id="dtordenes">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>TECNICO</th>
+                                <th>TOTAL</th>
+                                <th>ABIERTOS</th>
+                                <th>RESUELTOS</th>
+                                <th>EFICIENCIA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tborden"></tbody>
+                    </table>
+                    <!-- /.table-responsive -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="MdNuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="mdsize modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color:#fafafa">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-center"><strong>Tecnico: <span id="titulo"></span></p></strong>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body proceso">
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead class="thead-dark" id="dtorden">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>TIPO/TRABAJO</th>
+                                <th>TRABAJO</th>
+                                <th>DESCCRIPCION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbtrabajos"></tbody>
+                    </table>
+                </div>
+            </div>
+            <input id="idor" hidden />
+            <div class="modal-footer proceso" style="background-color:#fafafa">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/reptrabajos.js"></script>
+
+
+
